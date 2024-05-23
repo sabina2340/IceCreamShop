@@ -1,0 +1,57 @@
+﻿@model List<IceCreamShop.Models.Employee>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отчеты по продажам</title>
+    <style>
+        body {
+            background-color: #ff99cc; /* Розовый цвет фона */
+            font-family: Arial, sans-serif;
+            text-align: center; /* Выравнивание по центру */
+        }
+
+        ul {
+            list-style-type: none; /* Убираем маркеры списка */
+            padding: 0; /* Убираем внутренний отступ у списка */
+            margin-top: 50px; /* Отступ сверху */
+        }
+
+        li {
+            margin-bottom: 10px; /* Отступ между элементами списка */
+        }
+
+        a {
+            display: block; /* Делаем ссылку блочным элементом */
+            padding: 10px; /* Внутренний отступ у ссылки */
+            background-color: #ff66b2; /* Розовый цвет фона для ссылок */
+            color: white; /* Цвет текста ссылок */
+            text-decoration: none; /* Убираем подчеркивание ссылок */
+            border-radius: 5px; /* Закругляем углы ссылок */
+            transition: background-color 0.3s ease; /* Плавное изменение цвета фона при наведении */
+        }
+
+            a:hover {
+                background-color: #ff3385; /* Изменение цвета фона при наведении */
+            }
+    </style>
+</head>
+<body>
+    <h1>Отчеты по продажам</h1>
+    <ul>
+        @foreach (var employee in Model)
+        {
+            <li>
+                <!-- Ссылка для открытия отчета о продажах для каждого сотрудника -->
+                <a href="@Url.Action("SalesReport", "Home", new { employeeId = employee.EmployeeId })">
+                    @employee.EName
+                </a>
+                <!-- Ссылка для скачивания отчета о продажах для каждого сотрудника -->
+                <a href="@Url.Action("DownloadSalesReport", "Home", new { employeeId = employee.EmployeeId })" class="btn btn-primary">Download Sales Report</a>
+            </li>
+        }
+    </ul>
+</body>
+</html>

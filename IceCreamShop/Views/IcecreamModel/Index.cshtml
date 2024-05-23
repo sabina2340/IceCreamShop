@@ -1,0 +1,115 @@
+﻿@model IEnumerable<IceCreamShop.Models.IcecreamModel>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Icecream Models List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('/images/фон3.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #933;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .btn-success {
+            background-color: #5cb85c;
+            color: white;
+            margin-bottom: 20px;
+            display: inline-block;
+            max-width: 200px;
+            width: 100%;
+        }
+
+        .btn-primary {
+            background-color: #337ab7;
+            color: white;
+        }
+
+        .btn-danger {
+            background-color: #d9534f;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+            <h2>Icecream Models</h2>
+
+            <a href="@Url.Action("Create")" class="btn btn-success">Create New Icecream Model</a>
+            <a href="@Url.Action("DownloadIcecreamModelData")" class="btn btn-primary">Download Icecream Model Data</a> 
+
+        <table>
+            <tr>
+                <th>Model ID</th>
+                <th>Model Name</th>
+                <th>Expiration Date</th>
+                <th>Date Of Manufacture</th>
+                <th>Barcode</th>
+                <th>Product ID</th>
+                <th>Sale ID</th>
+                <th>Actions</th>
+            </tr>
+            @foreach (var icecreamModel in Model)
+            {
+                <tr>
+                    <td>@icecreamModel.ModelId</td>
+                    <td>@icecreamModel.ModelName</td>
+                    <td>@icecreamModel.ExpirationDate</td>
+                    <td>@icecreamModel.DateOfManufacture</td>
+                    <td>@icecreamModel.Barcode</td>
+                    <td>@icecreamModel.ProductId</td>
+                    <td>@icecreamModel.SaleId</td>
+                    <td>
+                        <a href="@Url.Action("Edit", new { id = icecreamModel.ModelId })" class="btn btn-primary">Edit</a>
+                        <form action="@Url.Action("Delete", new { id = icecreamModel.ModelId })" method="post" style="display: inline;">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</body>
+</html>

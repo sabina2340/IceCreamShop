@@ -1,0 +1,137 @@
+﻿@model IEnumerable<IceCreamShop.Models.Employee>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employees List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('/images/фон3.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #933;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .btn-success {
+            background-color: #5cb85c;
+            color: white;
+            margin-bottom: 20px;
+            display: inline-block;
+            max-width: 200px;
+            width: 100%;
+        }
+
+        .btn-primary {
+            background-color: #337ab7;
+            color: white;
+        }
+
+        .btn-danger {
+            background-color: #d9534f;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Сотрудники</h2>
+        <form method="get" action="@Url.Action("Index")">
+            <div>
+                <label for="timeOfWork">Режим работы:</label>
+                <input type="text" name="timeOfWork" id="timeOfWork" placeholder="Введите режим работы">
+            </div>
+            <div>
+                <button type="submit">Применить фильтр</button>
+            </div>
+        </form>
+
+        <a href="@Url.Action("Create")" class="btn btn-success">Добавить нового сотрудника</a>
+
+
+        <form id="exportForm" action="@Url.Action("ExportEmployeesToTextFile")" method="post" style="display: none;">
+            @Html.AntiForgeryToken()
+        </form>
+
+        <a href="#" id="exportLink" class="btn btn-primary">Экспорт списка сотрудников в текстовый файл</a>
+
+        <script>
+            document.getElementById("exportLink").addEventListener("click", function () {
+                document.getElementById("exportForm").submit();
+            });
+        </script>
+
+        <table>
+            <tr>
+                <th>
+                    <a href="?sortOrder=asc">Имя ▲</a>
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().TimeEmployees)
+                </th>
+            <tr>
+                <th>Идентификатор сотрудника</th>
+                <th>Имя</th>
+                <th>Режим работы</th>
+                <th>Контактные данные</th>
+                <th>Действия</th>
+            </tr>
+            @foreach (var employee in Model)
+            {
+                <tr>
+                    <td>@employee.EmployeeId</td>
+                    <td>@employee.EName</td>
+                    <td>@employee.TimeEmployees</td>
+                    <td>@employee.ContactDetails</td>
+                    <td>
+                        <a href="@Url.Action("Edit", new { id = employee.EmployeeId })" class="btn btn-primary">Редактировать</a>
+                        <form action="@Url.Action("Delete", new { id = employee.EmployeeId })" method="post" style="display: inline;">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn btn-danger">Удалить</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,113 @@
+﻿@model IceCreamShop.Models.IcecreamModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Icecream Model</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('/images/морож2.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"], input[type="date"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            background-color: #337ab7;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Add New Icecream Model</h2>
+
+        <form method="post" action="@Url.Action("Create")">
+            <div class="form-group">
+                <label for="ModelName">Model Name:</label>
+                <input asp-for="ModelName" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="ExpirationDate">Expiration Date:</label>
+                <input asp-for="ExpirationDate" type="date" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="DateOfManufacture">Date Of Manufacture:</label>
+                <input asp-for="DateOfManufacture" type="date" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="Barcode">Barcode:</label>
+                <input asp-for="Barcode" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="ProductId">Product ID:</label>
+                <input asp-for="ProductId" type="number" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="SaleId">Sale ID:</label>
+                <input asp-for="SaleId" type="number" class="form-control" />
+            </div>
+
+            <button type="submit" class="btn btn-primary">Add Model</button>
+        </form>
+    </div>
+</body>
+</html>
+
+

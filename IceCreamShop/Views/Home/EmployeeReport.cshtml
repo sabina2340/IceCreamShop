@@ -1,0 +1,39 @@
+﻿@model List<IceCreamShop.Models.Sale>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Report</title>
+</head>
+<body>
+    <h1>Sales Report</h1>
+
+    <h2>Sales for @ViewBag.EmployeeName</h2>
+    <p>Total Sales Amount: @ViewBag.TotalSales</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Sale ID</th>
+                <th>Sale Date</th>
+                <th>Total Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var sale in Model)
+            {
+                <tr>
+                    <td>@sale.SaleId</td>
+                    <td>@sale.SaleDate</td>
+                    <td>@sale.TotalAmount</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <p><a href="@Url.Action("Index", "Home")">Back to Employee Selection</a></p>
+
+</body>
+</html>

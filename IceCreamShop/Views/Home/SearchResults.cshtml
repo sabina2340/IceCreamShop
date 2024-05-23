@@ -1,0 +1,177 @@
+﻿@model IceCreamShop.Models.SearchViewModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8bbd0; /* Розовый фон */
+            color: #333; /* Цвет текста */
+            padding: 20px;
+        }
+
+        .search-result {
+            background-color: #fff; /* Белый фон для рамочки с результатом */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            text-align: center; /* Центрирование содержимого */
+        }
+
+        h2 {
+            color: #880e4f; /* Розовый заголовок */
+        }
+
+        .not-found {
+            font-size: 18px;
+            font-style: italic;
+            color: #880e4f; /* Розовый цвет для сообщения об отсутствии результатов */
+        }
+    </style>
+</head>
+<body>
+    <h2>Результаты поиска</h2>
+
+    @if (Model.Employees.Any())
+    {
+        <div class="search-result">
+            <h3>Найденные сотрудники:</h3>
+            @foreach (var employee in Model.Employees)
+            {
+                <div class="employee-info">
+                    <p><strong>Имя:</strong> @employee.EName</p>
+                    @if (!string.IsNullOrEmpty(employee.TimeEmployees))
+                    {
+                        <p><strong>Рабочее время:</strong> @employee.TimeEmployees</p>
+                    }
+                    @if (!string.IsNullOrEmpty(employee.ContactDetails))
+                    {
+                        <p><strong>Контактная информация:</strong> @employee.ContactDetails</p>
+                    }
+                </div>
+            }
+        </div>
+    }
+    @if (Model.IcecreamModels.Any())
+    {
+        <div class="search-result">
+            <h3>Найденные модели мороженого:</h3>
+            @foreach (var icecreamModel in Model.IcecreamModels)
+            {
+                <div class="icecream-model-info">
+                    <p><strong>Название модели:</strong> @icecreamModel.ModelName</p>
+                    <p><strong>Дата истечения срока годности:</strong> @icecreamModel.ExpirationDate.ToString("yyyy-MM-dd")</p>
+                    <p><strong>Дата производства:</strong> @icecreamModel.DateOfManufacture.ToString("yyyy-MM-dd")</p>
+                    <p><strong>Штрих-код:</strong> @icecreamModel.Barcode</p>
+                    <!-- Дополнительная информация о модели мороженого, если необходимо -->
+                </div>
+            }
+        </div>
+    }
+    @if (Model.Products.Any())
+    {
+        <div class="search-result">
+            <h3>Найденные продукты:</h3>
+            @foreach (var product in Model.Products)
+            {
+                <div class="product-info">
+                    <p><strong>Тип продукта:</strong> @product.ProductType</p>
+                    <p><strong>Цена:</strong> @product.ProductPrice</p>
+                    <p><strong>Состав:</strong> @product.ProductComposition </p>
+                    <p><strong>Поставщик:</strong> @product.ProductManufacturer</p>
+                    <p><strong>Описание:</strong> @product.ProductDescription </p>
+                    <p><strong>Вес:</strong> @product.ProductWeight</p>
+                    
+                    <!-- Дополнительная информация о продукте, если необходимо -->
+                </div>
+            }
+        </div>
+    }
+ @*    @if (Model.Sales.Any())
+    {
+        <div class="search-result">
+            <h3>Найденные продажи:</h3>
+            @foreach (var sale in Model.Sales)
+            {
+                <div class="sale-info">
+                    <p><strong>Дата продажи:</strong> @sale.SaleDate</p>
+                    <p><strong>Общая сумма:</strong> @sale.TotalAmount</p>
+                    <!-- Дополнительная информация о продаже, если необходимо -->
+                </div>
+            }
+        </div>
+    } *@
+    @if (Model.Stores.Any())
+    {
+        <div class="search-result">
+            <h3>Найденные магазины:</h3>
+            @foreach (var store in Model.Stores)
+            {
+                <div class="store-info">
+                    <p><strong>Адрес:</strong> @store.StoreAddress</p>
+                    <p><strong>График работы:</strong> @store.StoreTimetable</p>
+                    <p><strong>Телефон:</strong> @store.StorePhone</p>
+                    <!-- Дополнительная информация о магазине, если необходимо -->
+                </div>
+            }
+        </div>
+    }
+ 
+
+   @*  @if (Model.Employees.Any())
+    {
+        <div class="search-result">
+            <h3>Найденные сотрудники:</h3>
+            @foreach (var employee in Model.Employees)
+            {
+                <p>@employee.EName</p>
+            }
+        </div>
+    } *@
+
+   @*  @if (Model.IcecreamModels.Any())
+    {
+        <div class="search-result">
+            <h3>Найденные модели мороженого:</h3>
+            @foreach (var ice in Model.IcecreamModels)
+            {
+                <p>@ice.ModelName</p>
+            }
+        </div>
+    }
+    @if (Model.Products.Any())
+    {
+        <div class="search-result">
+            <h3>Найденные продукты:</h3>
+            @foreach (var ice in Model.Products)
+            {
+                <p>@ice.ProductType</p>
+            }
+        </div>
+    }
+    @if (Model.Stores.Any())
+    {
+        <div class="search-result">
+            <h3>Найденные магазины:</h3>
+            @foreach (var ice in Model.Stores)
+            {
+                <p>@ice.StoreAddress</p>
+            }
+        </div>
+    } *@
+
+   @*  else
+    {
+        <p class="not-found">Ничего не найдено.</p>
+    } *@
+</body>
+</html>
+    
+
+
+

@@ -1,0 +1,59 @@
+﻿@model IEnumerable<dynamic>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Average Price by Product Type Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fce4ec; /* Розовый цвет фона */
+            padding: 20px;
+        }
+
+        h2 {
+            color: #ff66b2; /* Розовый цвет заголовка */
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #ff66b2; /* Розовый цвет фона заголовка */
+            color: white; /* Белый цвет текста заголовка */
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2; /* Светло-серый цвет фона четных строк */
+        }
+    </style>
+</head>
+<body>
+    <h2>Средняя Цена Ассортимента</h2>
+    <table>
+        <tr>
+            <th>Product Type</th>
+            <th>Average Price</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ProductType</td>
+                <td>@item.AveragePrice</td>
+            </tr>
+        }
+    </table>
+    <a href="@Url.Action("DownloadAveragePriceByProductType")" class="btn btn-primary" style="background-color: #ff66b2; color: white;">Download Average Price by Product Type</a>
+
+</body>
+</html>

@@ -1,0 +1,210 @@
+﻿@* @model List<IceCreamShop.Models.Employee>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сеть Магазинов Мороженого</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('/images/фон3.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            padding-top: 20px;
+            text-align: center;
+            color: #333; /* Цвет текста */
+        }
+
+        .header {
+            text-align: left;
+            margin-left: 20px;
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        .info {
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: right;
+        }
+
+        li {
+            display: inline;
+            margin-right: 10px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            width: 300px;
+            font-size: 16px;
+            background-color: #ff66b2; /* Розовая строка поиска */
+            color: white;
+            outline: none;
+        }
+
+        button[type="submit"] {
+            background-color: #ff66b2; /* Розовая кнопка поиска */
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            button[type="submit"]:hover {
+                background-color: #ff3385; /* Изменение цвета кнопки при наведении */
+            }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Сеть Магазинов Мороженого</h1>
+    </div>
+
+    <form action="@Url.Action("Search", "Home")" method="GET">
+        <input type="text" name="query" placeholder="Введите запрос...">
+        <button type="submit">Поиск</button>
+    </form>
+    <ul>
+        <li><a href="/Employee" class="button">Employees</a></li>
+        <li><a href="/IcecreamModel" class="button">IcecreamModel</a></li>
+        <li><a href="/Product" class="button">Product</a></li>
+        <li><a href="/Sale" class="button">Sale</a></li>
+        <li><a href="/Store" class="button">Stores</a></li>
+    </ul>
+    @{
+        var employeeId = ViewBag.EmployeeId as int?;
+    }
+
+    <form method="get" action="@Url.Action("Index", "Home")">
+        <label for="employeeId">Select Employee:</label>
+        <select id="employeeId" name="employeeId">
+            <option value="">-- Select Employee --</option>
+            @foreach (var employee in ViewBag.Employees)
+            {
+                <option value="@employee.EmployeeId" @(employee.EmployeeId == employeeId ? "selected" : "")>@employee.EName</option>
+            }
+        </select>
+        <button type="submit">Show Sales</button>
+    </form>
+
+    <div>
+        @if (employeeId.HasValue)
+        {
+            await Component.InvokeAsync("IceCream", new { employeeId = employeeId });
+        }
+        else
+        {
+            <p>Please select an employee to view sales.</p>
+        }
+    </div>
+</body>
+</html>
+
+ *@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сеть Магазинов Мороженого</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('/images/фон3.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            padding-top: 20px;
+            text-align: center;
+            color: #333; /* Цвет текста */
+        }
+
+        .header {
+            text-align: left;
+            margin-left: 20px;
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        .info {
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: right;
+        }
+
+        li {
+            display: inline;
+            margin-right: 10px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            width: 300px;
+            font-size: 16px;
+            background-color: #ff66b2; /* Розовая строка поиска */
+            color: white;
+            outline: none;
+        }
+
+        button[type="submit"] {
+            background-color: #ff66b2; /* Розовая кнопка поиска */
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            button[type="submit"]:hover {
+                background-color: #ff3385; /* Изменение цвета кнопки при наведении */
+            }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Сеть Магазинов Мороженого</h1>
+    </div>
+
+    <form action="@Url.Action("Search", "Home")" method="GET">
+        <input type="text" name="query" placeholder="Введите запрос...">
+        <button type="submit">Поиск</button>
+    </form>
+   @*  <p>@await Component.InvokeAsync("IceCream")</p> *@
+    <ul>
+        <li><a href="/Employee" class="button">Employees</a></li>
+        <li><a href="/IcecreamModel" class="button">IcecreamModel</a></li>
+        <li><a href="/Product" class="button">Product</a></li>
+        <li><a href="/Sale" class="button">Sale</a></li>
+        <li><a href="/Store" class="button">Stores</a></li>
+        <a href="@Url.Action("SalesReportsList", "Home")">Отчеты по продажам</a>
+        <a href="@Url.Action("AveragePriceByProductType", "Home")">Средняя Цена</a>
+    </ul>
+</body>
+</html>
+

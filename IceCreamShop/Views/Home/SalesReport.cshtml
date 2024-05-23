@@ -1,0 +1,63 @@
+﻿@model IceCreamShop.Models.Employee
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отчет о продажах</title>
+    <style>
+        body {
+            background-color: #ff99cc; /* Розовый цвет фона */
+            font-family: Arial, sans-serif;
+            text-align: center; /* Выравнивание по центру */
+        }
+
+        table {
+            margin: 0 auto; /* Центрирование таблицы */
+            border-collapse: collapse;
+            width: 50%; /* Ширина таблицы */
+            margin-top: 50px; /* Отступ сверху */
+        }
+
+        th, td {
+            border: 1px solid #333; /* Цвет рамки */
+            padding: 8px; /* Внутренний отступ */
+        }
+
+        th {
+            background-color: #ff66b2; /* Розовый цвет фона для заголовков */
+            color: white; /* Цвет текста заголовков */
+        }
+
+        p {
+            margin-top: 20px; /* Отступ сверху для общей суммы продаж */
+        }
+    </style>
+</head>
+<body>
+    <h1>Отчет о продажах для @Model.EName</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Номер продажи</th>
+                <th>Сумма продажи</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var sale in Model.Sales)
+            {
+                <tr>
+                    <td>@sale.SaleId</td>
+                    <td>@sale.TotalAmount</td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2">Общая сумма продаж: @Model.Sales.Sum(s => s.TotalAmount)</td>
+            </tr>
+        </tfoot>
+    </table>
+</body>
+</html>
