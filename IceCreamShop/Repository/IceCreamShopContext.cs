@@ -100,13 +100,15 @@ public partial class IceCreamShopContext : DbContext
                 .HasColumnName("product_description");
             entity.Property(e => e.ProductManufacturer)
                 .HasMaxLength(100)
-                .HasColumnName("product_manufacturer");
+                .HasColumnName("product_manufacturer")
+                .IsRequired(false);
             entity.Property(e => e.ProductPrice)
                 .HasPrecision(10, 2)
                 .HasColumnName("product_price");
             entity.Property(e => e.ProductType)
                 .HasMaxLength(100)
-                .HasColumnName("product_type");
+                .HasColumnName("product_type")
+                .IsRequired(false);
             entity.Property(e => e.ProductWeight).HasColumnName("product_weight");
         });
 

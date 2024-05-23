@@ -81,27 +81,27 @@
         <form method="post" action="@Url.Action("Create")">
             <div class="form-group">
                 <label for="ModelName">Model Name:</label>
-                <input asp-for="ModelName" class="form-control" />
+                <input type="text" id="ModelName" name="ModelName" class="form-control" />
             </div>
             <div class="form-group">
                 <label for="ExpirationDate">Expiration Date:</label>
-                <input asp-for="ExpirationDate" type="date" class="form-control" />
+                <input type="date" id="ExpirationDate" name="ExpirationDate" class="form-control" />
             </div>
             <div class="form-group">
                 <label for="DateOfManufacture">Date Of Manufacture:</label>
-                <input asp-for="DateOfManufacture" type="date" class="form-control" />
+                <input type="date" id="DateOfManufacture" name="DateOfManufacture" class="form-control" />
             </div>
             <div class="form-group">
                 <label for="Barcode">Barcode:</label>
-                <input asp-for="Barcode" class="form-control" />
+                <input type="text" id="Barcode" name="Barcode" class="form-control" />
             </div>
             <div class="form-group">
                 <label for="ProductId">Product ID:</label>
-                <input asp-for="ProductId" type="number" class="form-control" />
+                <input type="number" id="ProductId" name="ProductId" class="form-control" />
             </div>
             <div class="form-group">
                 <label for="SaleId">Sale ID:</label>
-                <input asp-for="SaleId" type="number" class="form-control" />
+                <input type="number" id="SaleId" name="SaleId" class="form-control" />
             </div>
 
             <button type="submit" class="btn btn-primary">Add Model</button>

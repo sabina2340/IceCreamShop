@@ -27,7 +27,6 @@ namespace IceCreamShop.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public IActionResult Create(IcecreamModel model)
         {
             if (!ModelState.IsValid)

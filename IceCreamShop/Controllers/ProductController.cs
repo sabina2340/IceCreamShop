@@ -42,19 +42,12 @@ namespace IceCreamShop.Controllers
             return View(filteredProducts);
         }
 
-        //public IActionResult Index()
-        //{
-        //    var products = _context.Products.ToList();
-        //    return View(products);
-        //}
-
         public IActionResult Create()
         {
             return View();
         }
-
+            
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public IActionResult Create(Product product)
         {
             if (!ModelState.IsValid)
@@ -66,6 +59,7 @@ namespace IceCreamShop.Controllers
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
+
 
         public IActionResult Edit(int id)
         {

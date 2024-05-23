@@ -8,7 +8,7 @@ public partial class Employee
 {
     public int EmployeeId { get; set; }
 
-    public string EName { get; set; } = null!;
+    public string EName { get; set; } = "123";
 
     public string? TimeEmployees { get; set; }
 

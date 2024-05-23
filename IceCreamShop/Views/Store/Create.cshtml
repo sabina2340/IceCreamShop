@@ -73,15 +73,15 @@
         <form method="post" action="@Url.Action("Create")">
             <div class="form-group">
                 <label for="StoreAddress">Адрес:</label>
-                <input asp-for="StoreAddress" class="form-control" />
+                <input type="text" id="StoreAddress" name="StoreAddress" class="form-control" />
             </div>
             <div class="form-group">
                 <label for="StorePhone">Телефон:</label>
-                <input asp-for="StorePhone" class="form-control" />
+                <input type="text" id="StorePhone" name="StorePhone" class="form-control" />
             </div>
             <div class="form-group">
                 <label for="StoreTimetable">Режим работы:</label>
-                <input asp-for="StoreTimetable" class="form-control" />
+                <input type="text" id="StoreTimetable" name="StoreTimetable" class="form-control" />
             </div>
             <button type="submit" class="btn btn-primary">Зарегистрировать</button>
         </form>

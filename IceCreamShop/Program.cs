@@ -10,12 +10,18 @@ using System.Dynamic;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<IceCreamShopContext>(options => {
-    options.UseNpgsql("Host=localhost;Port=5432;Database=IceCreamShop;Username=postgres;Password=sabinamini04");
+    options.UseNpgsql("Host=localhost;Port=5432;Database=shop;Username=postgres;Password=12345");
 });
 var app = builder.Build();
+
+var env = app.Environment;
+if (env.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+}
+
 app.UseStaticFiles();
 app.UseRouting();
-
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllerRoute(
@@ -24,9 +30,3 @@ app.UseEndpoints(endpoints =>
 });
 app.Run();
 
-
-//var env = app.Environment;
-//if (env.IsDevelopment())
-//{
-//    app.UseDeveloperExceptionPage();
-//}

@@ -43,7 +43,6 @@ namespace IceCreamShop.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public IActionResult Create(Store store)
         {
             if (!ModelState.IsValid)

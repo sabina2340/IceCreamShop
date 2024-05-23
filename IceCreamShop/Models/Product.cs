@@ -7,11 +7,11 @@ public partial class Product
 {
     public int ProductId { get; set; }
 
-    public string ProductType { get; set; } = null!;
+    public string ProductType { get; set; } = "123";
 
     public decimal? ProductPrice { get; set; }
 
-    public string ProductManufacturer { get; set; } = null!;
+    public string ProductManufacturer { get; set; } = "123";   
 
     public string? ProductDescription { get; set; }
 
